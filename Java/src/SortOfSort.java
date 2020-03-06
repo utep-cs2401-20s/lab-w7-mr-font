@@ -3,82 +3,49 @@ public class SortOfSort {
 
 
 
-    public  static  void sortOfSort(int[] unsortedArray){
+    //NOTE: The SortOfSortTester tests for this method were run with sortOfSort
+    // being given a temporary return type of int[] to simplify testing.
+    //To run SortOfSortTester change the void return type to int[] and uncomment the return statement on line 49
+    public  static void sortOfSort(int[] unsortedArray) {
 
-        int sortedOffsetRight = 1;
-        int sortedOffsetLeft = 0;
-        int rightOffSetMultiplier = 1;
-        int leftOffSetMultiplier = 1;
-        int offSet = 2;
-        int loopNum = 0;
-        //int temp = 0;
+        int sortedOffsetRight = unsortedArray.length;
+        int sortedOffsetLeft = -1;
 
-        //false = left, true = right
-        boolean leftOrRight = true;
-
-        //int largestNum = unsortedArray[unsortedArray.length-1];
-
-        while(sortedOffsetLeft <= ((unsortedArray.length-1)/ 2) ){
+        int temp = 0;
 
 
-            if(leftOrRight){
-                loopNum = 0;
-                for(int i = unsortedArray.length-1; i >= (sortedOffsetLeft * leftOffSetMultiplier)-1; --i){
+        while(sortedOffsetLeft +1 < sortedOffsetRight){
 
-                    int largestNum = i;
-
-                    for(int j = i - 1; j >= sortedOffsetLeft; --j){
-
-                        if(unsortedArray[j] > largestNum){
-                            largestNum = j;
-                        }
+            for(int i = sortedOffsetRight-1; i >= sortedOffsetRight-2; --i){
+                temp = 0;
+                for(int j = i - 1; j > sortedOffsetLeft; --j){
+                    if(unsortedArray[j] > unsortedArray[i]){
+                        temp = unsortedArray[i];
+                        unsortedArray[i] = unsortedArray[j];
+                        unsortedArray[j] = temp;
                     }
 
-                    if(unsortedArray[largestNum] != i){
-                        int temp = unsortedArray[largestNum];
+                }
 
-                        unsortedArray[largestNum] = unsortedArray[i];
-                        unsortedArray[i] = temp;
+            }
 
-                    }
-                    loopNum ++;
-                    rightOffSetMultiplier++;
-                    if(loopNum == 2){
-                        leftOrRight = false;
+            sortedOffsetRight -= 2;
+
+            for (int k = sortedOffsetLeft +1; k <= sortedOffsetLeft+2; ++k){
+                temp = 0;
+                for (int l = k + 1; l < sortedOffsetRight; ++l){
+                    if (unsortedArray[l] > unsortedArray[k]){
+                        temp = unsortedArray[k];
+                        unsortedArray[k] = unsortedArray[l];
+                        unsortedArray[l] = temp;
                     }
                 }
-            }else{
-                loopNum = 0;
-                sortedOffsetLeft = 1;
-                for(int i = 0; i < (sortedOffsetRight * rightOffSetMultiplier); ++i){
-
-                    int largestNum = i;
-
-                    for(int j = i - 1; j >= sortedOffsetLeft; --j){
-
-                        if(unsortedArray[j] > largestNum){
-                            largestNum = j;
-                        }
-                    }
-
-                    if(unsortedArray[largestNum] != i){
-                        int temp = unsortedArray[largestNum];
-
-                        unsortedArray[largestNum] = unsortedArray[i];
-                        unsortedArray[i] = temp;
-
-                    }
-                    loopNum ++;
-                    leftOffSetMultiplier++;
-                    if(loopNum == 2){
-                        leftOrRight = true;
-                    }
             }
+
+            sortedOffsetLeft+=2;
         }
-    }
 
-    public int[] sortOfHelper(int[] unsortedArray, boolean leftRight, int offsetMultiplier){
-
-
+        //Return statement used for testing
+        //return unsortedArray;
     }
 }
