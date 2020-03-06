@@ -110,4 +110,22 @@ class SortOfSortTester {
         assertArrayEquals(testArray5NegPosSortOfSorted, test5.sortOfSort(testArray5NegPos));
     }
 
+    @org.junit.jupiter.api.Test
+    //This test is a best case scenario, where the array is of size one, and is already sorted.
+    // This would be an edge case.
+    //
+    //Array length: 1
+    //Array value range: 1 to 1
+    //
+    //Result: The method passed the test with the given array
+    public void testSortOfSort6size1(){
+
+        SortOfSort test6 = new SortOfSort();
+        int[] testArray6size1 = {1};
+        int[] testArray6size1SortOfSorted = {1};
+        SortOfSort.sortOfSort(testArray6size1);
+
+        assertArrayEquals(testArray6size1SortOfSorted, test6.sortOfSort(testArray6size1));
+    }
+
 }
